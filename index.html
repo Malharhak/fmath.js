@@ -2,16 +2,48 @@
 <html>
 <head>
 	<title>Speed Math Test</title>
+	<style>
+	#tests {
+		width: 800px;
+		height: 800px;
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		margin-left: -400px;
+		margin-top: -400px;
+	}
 	</style>
 </head>
 <body>
+	<span style="color:blue;">Blue:</span> cached points<br/>
+	<span style="color:red;">Red:</span> native points
 	<script type="text/javascript" src="src/SMath.js"></script>
 
+	<canvas id="tests" width="800" height="800"></canvas>
 	<script>
 	var sMath = new SMath();
 	for (var i = 0; i < 100; i++) {
 		var angle = Math.random() * 10;
 		console.log (sMath.cos(angle) - Math.cos(angle));
+	}
+
+	var ctx = document.getElementById('tests').getContext('2d');
+
+	for (var i = 0; i < 10000; i++) {
+		var angle = Math.random() * 100;
+
+		// Draw native point
+		ctx.fillStyle = "red";
+		ctx.globalAlpha = 0.5;
+		var x = Math.cos(angle) * 390;
+		var y = Math.sin(angle) * 390;
+		ctx.fillRect(400 + x, 400 + y, 2, 2);
+		// Draw optimized point
+		ctx.fillStyle = "blue";
+		ctx.globalAlpha = 1;
+		var x = sMath.cos(angle) * 390;
+		var y = sMath.sin(angle) * 390;
+		ctx.fillRect(400 + x, 400 + y, 2, 2);
 	}
 	</script>
 </body>
