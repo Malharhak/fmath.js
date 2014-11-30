@@ -6,7 +6,7 @@ It revolves around approximations, meaning that if you need precise results, you
 
 [JSPerf test](http://jsperf.com/smath-test) 75% fastest in Chrome 39. Seems cool.
 
-![jsperf_results.png](http: //Malharhak.github.com/smath.js/assets/jsperf.png)
+![jsperf_results.png](http://Malharhak.github.io/smath.js/assets/jsperf.png)
 
 ###Usage###
 
