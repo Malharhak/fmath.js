@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Speed Math Test</title>
+	</style>
+</head>
+<body>
+	<script type="text/javascript" src="src/SMath.js"></script>
+
+	<script>
+	var sMath = new SMath();
+	for (var i = 0; i < 100; i++) {
+		var angle = Math.random() * 10;
+		console.log (sMath.cos(angle) - Math.cos(angle));
+	}
+	</script>
+</body>
+</html>
