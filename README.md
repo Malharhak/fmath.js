@@ -4,7 +4,7 @@ This is a library for faster math functions execution in Javascript.
 
 It revolves around approximations, meaning that if you need precise results, you should not use this library. But if you want faster calculation where you can afford results that are a bit off, you can go with that.
 
-[JSPerf test](http://jsperf.com/smath-test) 75% fastest in Chrome 39. Seems cool.
+[JSPerf test](http://jsperf.com/smath-test) 75% faster in Chrome 39. Seems cool.
 
 ![jsperf_results.png](http://Malharhak.github.io/smath.js/assets/jsperf.png)
 
