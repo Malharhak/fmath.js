@@ -6,7 +6,7 @@ It revolves around approximation and cached values, meaning that if you need pre
 
 [JSPerf test](http://jsperf.com/smath-test/4) We get something around +400% speed in Chrome, which is nice.
 
-![jsperf_results.png](http://Malharhak.github.io/smath.js/assets/jsperf.png)
+![jsperf_results.png](http://malharhak.github.io/smath.js/assets/jsperf.png)
 
 ###Usage###
 

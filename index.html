@@ -13,38 +13,54 @@
 		margin-top: -400px;
 	}
 	</style>
+	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 </head>
 <body>
 	<span style="color:blue;">Blue:</span> cached points<br/>
-	<span style="color:red;">Red:</span> native points
+	<span style="color:red;">Red:</span> native points<br/>
+	Resolution: <input type="range" min="10" max="3600" id="resolution" value="180"> <span id="resVal">180</span>
 	<script type="text/javascript" src="src/SMath.js"></script>
 
 	<canvas id="tests" width="800" height="800"></canvas>
 	<script>
-	var sMath = new SMath();
-	for (var i = 0; i < 100; i++) {
-		var angle = Math.random() * 10;
-		console.log (sMath.cos(angle) - Math.cos(angle));
-	}
-
+	var resolution = 180;
 	var ctx = document.getElementById('tests').getContext('2d');
+	function launch () {
+		ctx.fillStyle = "white";
+		ctx.fillRect(0, 0, 800, 800);
+		var sMath = new SMath({
+			nbCos: resolution,
+			nbSin: resolution
+		});
+		for (var i = 0; i < 100; i++) {
+			var angle = Math.random() * 10;
+			console.log (sMath.cos(angle) - Math.cos(angle));
+		}
 
-	for (var i = 0; i < 10000; i++) {
-		var angle = Math.random() * 100;
 
-		// Draw native point
-		ctx.fillStyle = "red";
-		ctx.globalAlpha = 0.5;
-		var x = Math.cos(angle) * 390;
-		var y = Math.sin(angle) * 390;
-		ctx.fillRect(400 + x, 400 + y, 2, 2);
-		// Draw optimized point
-		ctx.fillStyle = "blue";
-		ctx.globalAlpha = 1;
-		var x = sMath.cos(angle) * 390;
-		var y = sMath.sin(angle) * 390;
-		ctx.fillRect(400 + x, 400 + y, 2, 2);
+		for (var i = 0; i < 10000; i++) {
+			var angle = Math.random() * 100;
+
+			// Draw native point
+			ctx.fillStyle = "red";
+			ctx.globalAlpha = 0.5;
+			var x = Math.cos(angle) * 390;
+			var y = Math.sin(angle) * 390;
+			ctx.fillRect(400 + x, 400 + y, 1, 1);
+			// Draw optimized point
+			ctx.fillStyle = "blue";
+			ctx.globalAlpha = 1;
+			var x = sMath.cos(angle) * 390;
+			var y = sMath.sin(angle) * 390;
+			ctx.fillRect(400 + x, 400 + y, 2, 2);
+		}
 	}
+	$('#resolution').on('change', function () {
+		resolution = $('#resolution').val();
+		$('#resVal').text(resolution);
+		launch();
+	});
+	launch();
 	</script>
 </body>
 </html>
