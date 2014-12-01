@@ -2,7 +2,9 @@
 
 This is a library for faster math functions execution in Javascript. It only implements sine and cosine for now.
 
-It revolves around approximation and cached values, meaning that if you need precise results, you should not use this library. But if you want faster calculation where you can afford results that are a bit off, you can go with that.
+It uses a lookup table for approximate results, meaning that if you need precise results, you should not use this library. But if you want faster calculation where you can afford results that are a bit off, you can go with that.
+
+The resolution of the lookup table can be configured too.
 
 [JSPerf test](http://jsperf.com/smath-test/4) We get something around +400% speed in Chrome, which is nice.
 
@@ -11,7 +13,10 @@ It revolves around approximation and cached values, meaning that if you need pre
 ###Usage###
 
 ``` javascript
-var sMath = new SMath();
+var sMath = new SMath({
+	nbCos: 360, // Resolution of the lookup table. More = more precision
+	nbSin: 360
+});
 
 var angle = Math.PI;
 sMath.cos(angle);

@@ -8,7 +8,7 @@
 	@params: associative array, possible values:
 	- nbCos: nb of apparoximative values (default:360)
 	- nbSin: nb of apparoximative values (default:360)
-	Note: if either sin or cos has been calculated, a default cosinus array will be created
+	Note: if either sin or cos has been calculated, a default cosine array will be created
 	TODO: atan things
 */
 var SMath = function(params) {
@@ -20,7 +20,7 @@ var SMath = function(params) {
 	this.nbCos = params.nbCos || 360;
 	this.nbSin = params.nbSin || 360;
 	// We create cos functions and array only if no params has been passed or nbCos has been specified
-	if (!params || (params && params.nbCos)){
+	if (!params || (params && params.nbCos)) {
 		this.cosTable = new Float32Array(this.nbCos);
 // The cos factor is the difference in radians between two lookup values
 		this.cosFactor = this.nbCos / this.PI2;
@@ -32,7 +32,7 @@ var SMath = function(params) {
 		};
 	}
 
-	if (params && params.nbSin){
+	if (!params || (params && params.nbSin)) {
 		this.sinTable = new Float32Array(this.nbSin);
 		this.sinFactor = this.nbSin / this.PI2;
 		this.fillCache(this.sinTable, this.sinFactor, Math.sin);
