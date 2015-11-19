@@ -14,10 +14,14 @@ function closeEnough (a, b, epsilon) {
 	return Math.abs(a - b) < epsilon;
 }
 
-test("SMath#nbCos = SMath#nbSin = 360 by default", function (t) {
-	var sMath = new SMath();
-	t.is(sMath.nbCos, 360);
-	t.is(sMath.nbSin, 360);
+var sMath = new SMath();
+test(`SMath#nbSin = ${SMath.DEFAULT_PARAMS.nbSin} by default`, function (t) {
+	t.is(sMath.params.nbSin, SMath.DEFAULT_PARAMS.nbSin);
+	t.end();
+});
+
+test(`SMath#nbCos = ${SMath.DEFAULT_PARAMS.nbCos} by default`, function (t) {
+	t.is(sMath.params.nbCos, SMath.DEFAULT_PARAMS.nbCos);
 	t.end();
 });
 
@@ -30,16 +34,16 @@ test("SMath#nbCos = SMath#nbSin = 360 by default", function (t) {
 ].forEach(function (params) {
 	var sMath = new SMath(params);
 
-	var sinEpsilon = PI_2 / sMath.nbSin;
-	test(`SMath#sin = Math.sin ±${sinEpsilon.toFixed(2)} (nbSin ${sMath.nbSin})`, function (t) {
+	var sinEpsilon = PI_2 / sMath.params.nbSin;
+	test(`SMath#sin = Math.sin ±${sinEpsilon.toPrecision(3)} (nbSin ${params ? sMath.params.nbSin : "default"})`, function (t) {
 		angles.forEach(function (angle) {
 			t.ok(closeEnough(Math.sin(angle), sMath.sin(angle), sinEpsilon));
 		});
 		t.end();
 	});
 
-	var cosEpsilon = PI_2 / sMath.nbCos;
-	test(`SMath#cos = Math.cos ±${cosEpsilon.toFixed(2)} (nbCos ${sMath.nbCos})`, function (t) {
+	var cosEpsilon = PI_2 / sMath.params.nbCos;
+	test(`SMath#cos = Math.cos ±${cosEpsilon.toPrecision(3)} (nbCos ${params ? sMath.params.nbCos : "default"})`, function (t) {
 		angles.forEach(function (angle) {
 			t.ok(closeEnough(Math.cos(angle), sMath.cos(angle), cosEpsilon));
 		});

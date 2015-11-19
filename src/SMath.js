@@ -24,17 +24,16 @@
 	*/
 	var PI2 = Math.PI * 2;
 
+	SMath.DEFAULT_PARAMS = {nbSin: 360, nbCos: 360};
 	function SMath (params) {
-		this.params = params = params || {};
-		this.nbCos = params.nbCos || 360;
-		this.nbSin = params.nbSin || 360;
+		this.params = assign(null, SMath.DEFAULT_PARAMS, params);
 
-		this.cosTable = new Float32Array(this.nbCos);
-		this.cosFactor = this.nbCos / PI2;
+		this.cosTable = new Float32Array(this.params.nbCos);
+		this.cosFactor = this.params.nbCos / PI2;
 		SMath.fillCache(this.cosTable, this.cosFactor, Math.cos);
 
-		this.sinTable = new Float32Array(this.nbSin);
-		this.sinFactor = this.nbSin / PI2;
+		this.sinTable = new Float32Array(this.params.nbSin);
+		this.sinFactor = this.params.nbSin / PI2;
 		SMath.fillCache(this.sinTable, this.sinFactor, Math.sin);
 	};
 	SMath.prototype.cos = function (angle) {
@@ -54,6 +53,18 @@
 			array[i] = mathFunction(i / factor);
 		}
 	};
+
+	function assign (dst, src1, src2, etc) {
+		return [].reduce.call(arguments, function (dst, src) {
+			src = src || {};
+			for (var k in src) {
+				if (src.hasOwnProperty(k)) {
+					dst[k] = src[k];
+				}
+			}
+			return dst;
+		}, dst || {});
+	}
 
 	return SMath;
 }));
