@@ -22,7 +22,7 @@ function closeEnough (a, b, epsilon) {
 	var sMath = new SMath(params);
 
 	var sinEpsilon = PI_2 / sMath.params.nbSin;
-	test(`SMath#sin = Math.sin ±${sinEpsilon.toPrecision(3)} (nbSin ${params ? sMath.params.nbSin : "default"})`, function (t) {
+	test(`SMath#sin = Math.sin±${sinEpsilon.toPrecision(3)} (nbSin ${params ? sMath.params.nbSin : "default"})`, function (t) {
 		angles.forEach(function (angle) {
 			t.ok(closeEnough(Math.sin(angle), sMath.sin(angle), sinEpsilon));
 		});
@@ -30,7 +30,7 @@ function closeEnough (a, b, epsilon) {
 	});
 
 	var cosEpsilon = PI_2 / sMath.params.nbCos;
-	test(`SMath#cos = Math.cos ±${cosEpsilon.toPrecision(3)} (nbCos ${params ? sMath.params.nbCos : "default"})`, function (t) {
+	test(`SMath#cos = Math.cos±${cosEpsilon.toPrecision(3)} (nbCos ${params ? sMath.params.nbCos : "default"})`, function (t) {
 		angles.forEach(function (angle) {
 			t.ok(closeEnough(Math.cos(angle), sMath.cos(angle), cosEpsilon));
 		});
