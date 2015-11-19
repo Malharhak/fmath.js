@@ -3,9 +3,6 @@
 var test = require('ava');
 var SMath = require('..');
 
-console.log("default params:", SMath.DEFAULT_PARAMS);
-console.log();
-
 var PI_2 = Math.PI * 2;
 
 var NUM_ANGLES_TO_TEST = 10000;
@@ -16,17 +13,6 @@ for (var i = 0; i < NUM_ANGLES_TO_TEST; i++) angles.push(MAX_TEST_ANGLE_RAD*2*(M
 function closeEnough (a, b, epsilon) {
 	return Math.abs(a - b) < epsilon;
 }
-
-var sMath = new SMath();
-test(`SMath#nbSin = ${SMath.DEFAULT_PARAMS.nbSin} by default`, function (t) {
-	t.is(sMath.params.nbSin, SMath.DEFAULT_PARAMS.nbSin);
-	t.end();
-});
-
-test(`SMath#nbCos = ${SMath.DEFAULT_PARAMS.nbCos} by default`, function (t) {
-	t.is(sMath.params.nbCos, SMath.DEFAULT_PARAMS.nbCos);
-	t.end();
-});
 
 [
 	null, // use default params, accurate
