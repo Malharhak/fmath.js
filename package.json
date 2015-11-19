@@ -4,16 +4,23 @@
   "description": "Optimized math functions",
   "main": "src/SMath.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "ava"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Malharhak/smath.js.git"
   },
   "author": "Anthony Pigeot <anthony.pigeot@gmail.com>",
+  "contributors": [
+    "Dan Kaplun <dbkaplun@gmail.com>",
+    "Bertrand Coizy (http://twitter.com/etribz)"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Malharhak/smath.js/issues"
   },
-  "homepage": "https://github.com/Malharhak/smath.js#readme"
+  "homepage": "https://github.com/Malharhak/smath.js#readme",
+  "devDependencies": {
+    "ava": "0.5.0"
+  }
 }
