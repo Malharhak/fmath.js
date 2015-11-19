@@ -1,8 +1,3 @@
-/**
- * @author Anthony Pigeot - http://anthonypigeot.com
- * @contributor Bertrand Coizy - http://twitter.com/etribz
- */
-
 (function (root, factory) {
 	if (typeof define === 'function' && define.amd) {
 		define(function () {
@@ -14,17 +9,16 @@
 		root.SMath = factory();
 	}
 }(this, function () {
-	/**
-		SMath constructor
-		@params: associative array, possible values:
-		- nbCos: nb of apparoximative values (default:360)
-		- nbSin: nb of apparoximative values (default:360)
-		Note: if either sin or cos has been calculated, a default cosine array will be created
-		TODO: atan things
-	*/
 	var PI2 = Math.PI * 2;
 
 	SMath.DEFAULT_PARAMS = {nbSin: 360, nbCos: 360};
+
+	/**
+	 * SMath constructor
+	 * @param {Object} params - passed to the constructor
+	 * @param {number} params.nbSin - # of cached values for SMath#sin (default: 360)
+	 * @param {number} params.nbCos - # of cached values for SMath#cos (default: 360)
+	 */
 	function SMath (params) {
 		this.params = SMath._assign(null, SMath.DEFAULT_PARAMS, params);
 

@@ -11,6 +11,10 @@
     "url": "git+https://github.com/Malharhak/smath.js.git"
   },
   "author": "Anthony Pigeot <anthony.pigeot@gmail.com>",
+  "contributors": [
+    "Dan Kaplun <dbkaplun@gmail.com>",
+    "Bertrand Coizy (http://twitter.com/etribz)"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Malharhak/smath.js/issues"
