@@ -3,6 +3,9 @@
 var test = require('ava');
 var SMath = require('..');
 
+console.log("default params:", SMath.DEFAULT_PARAMS);
+console.log();
+
 var PI_2 = Math.PI * 2;
 
 var NUM_ANGLES_TO_TEST = 10000;
