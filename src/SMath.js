@@ -26,15 +26,15 @@
 
 	SMath.DEFAULT_PARAMS = {nbSin: 360, nbCos: 360};
 	function SMath (params) {
-		this.params = assign(null, SMath.DEFAULT_PARAMS, params);
+		this.params = SMath._assign(null, SMath.DEFAULT_PARAMS, params);
 
 		this.cosTable = new Float32Array(this.params.nbCos);
 		this.cosFactor = this.params.nbCos / PI2;
-		SMath.fillCache(this.cosTable, this.cosFactor, Math.cos);
+		SMath._fillCache(this.cosTable, this.cosFactor, Math.cos);
 
 		this.sinTable = new Float32Array(this.params.nbSin);
 		this.sinFactor = this.params.nbSin / PI2;
-		SMath.fillCache(this.sinTable, this.sinFactor, Math.sin);
+		SMath._fillCache(this.sinTable, this.sinFactor, Math.sin);
 	};
 	SMath.prototype.cos = function (angle) {
 		angle %= PI2;
@@ -47,14 +47,14 @@
 		return this.sinTable[(angle * this.sinFactor) | 0];
 	};
 
-	SMath.fillCache = function (array, factor, mathFunction) {
+	SMath._fillCache = function (array, factor, mathFunction) {
 		var length = array.length;
 		for (var i = 0; i < length; i++) {
 			array[i] = mathFunction(i / factor);
 		}
 	};
 
-	function assign (dst, src1, src2, etc) {
+	SMath._assign = function (dst, src1, src2, etc) {
 		return [].reduce.call(arguments, function (dst, src) {
 			src = src || {};
 			for (var k in src) {
@@ -64,7 +64,7 @@
 			}
 			return dst;
 		}, dst || {});
-	}
+	};
 
 	return SMath;
 }));
