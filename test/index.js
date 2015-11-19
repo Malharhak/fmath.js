@@ -3,25 +3,46 @@
 var test = require('ava');
 var SMath = require('..');
 
-var sMath = new SMath();
+var PI_2 = Math.PI * 2;
 
-var epsilon = 0.05;
-function closeEnough (a, b) { return Math.abs(a - b) < epsilon; }
-
+var NUM_ANGLES_TO_TEST = 10000;
+var MAX_TEST_ANGLE_RAD = 200;
 var angles = [];
-var anglesToTest = 10000;
-for (var i = 0; i < anglesToTest; i++) angles.push((Math.random() - .5) * 200);
+for (var i = 0; i < NUM_ANGLES_TO_TEST; i++) angles.push(MAX_TEST_ANGLE_RAD*2*(Math.random() - .5));
 
-test(`SMath#sin is within ${epsilon} without params`, function (t) {
-	angles.forEach(function (angle) {
-		t.ok(closeEnough(Math.sin(angle), sMath.sin(angle)));
-	});
+function closeEnough (a, b, epsilon) {
+	return Math.abs(a - b) < epsilon;
+}
+
+test("SMath#nbCos = SMath#nbSin = 360 by default", function (t) {
+	var sMath = new SMath();
+	t.is(sMath.nbCos, 360);
+	t.is(sMath.nbSin, 360);
 	t.end();
 });
 
-test(`SMath#cos is within ${epsilon} without params`, function (t) {
-	angles.forEach(function (angle) {
-		t.ok(closeEnough(Math.cos(angle), sMath.cos(angle)));
+[
+	null, // use default params, accurate
+	{nbSin: 1,  nbCos: 1}, // cache only one possible value, pretty much useless due to lack of accuracy
+	{nbSin: 30, nbCos: 30}, // a little better but still very inaccurate
+	{nbSin: 180, nbCos: 180}, // a bit less accurate than default
+	{nbSin: 4320, nbCos: 4320}, // extremely accurate
+].forEach(function (params) {
+	var sMath = new SMath(params);
+
+	var sinEpsilon = PI_2 / sMath.nbSin;
+	test(`SMath#sin = Math.sin ±${sinEpsilon.toFixed(2)} (nbSin ${sMath.nbSin})`, function (t) {
+		angles.forEach(function (angle) {
+			t.ok(closeEnough(Math.sin(angle), sMath.sin(angle), sinEpsilon));
+		});
+		t.end();
 	});
-	t.end();
+
+	var cosEpsilon = PI_2 / sMath.nbCos;
+	test(`SMath#cos = Math.cos ±${cosEpsilon.toFixed(2)} (nbCos ${sMath.nbCos})`, function (t) {
+		angles.forEach(function (angle) {
+			t.ok(closeEnough(Math.cos(angle), sMath.cos(angle), cosEpsilon));
+		});
+		t.end();
+	});
 });
