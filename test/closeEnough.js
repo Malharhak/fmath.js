@@ -1,5 +1,5 @@
 var test = require('ava');
-var SMath = require('..');
+var FMath = require('..');
 
 var PI_2 = Math.PI * 2;
 
@@ -26,27 +26,27 @@ function closeEnough (a, b, epsilon) {
 	{resolution: 180, nbCos: 180, nbSin: 180, nbAtan: 180}, // a bit less accurate than default
 	{resolution: 4320, nbCos: 4320, nbSin: 4320, nbAtan: 4320}, // extremely accurate
 ].forEach(function (params) {
-	var sMath = new SMath(params);
-	var sinEpsilon = PI_2 / sMath.params.nbSin;
-	test(`SMath#sin = Math.sin±${sinEpsilon.toPrecision(3)} (nbSin ${params ? sMath.params.nbSin : "default"})`, function (t) {
+	var fMath = new FMath(params);
+	var sinEpsilon = PI_2 / fMath.params.nbSin;
+	test(`FMath#sin = Math.sin±${sinEpsilon.toPrecision(3)} (nbSin ${params ? fMath.params.nbSin : "default"})`, function (t) {
 		angles.forEach(function (angle) {
-			t.ok(closeEnough(Math.sin(angle), sMath.sin(angle), sinEpsilon));
+			t.ok(closeEnough(Math.sin(angle), fMath.sin(angle), sinEpsilon));
 		});
 		t.end();
 	});
 
-	var cosEpsilon = PI_2 / sMath.params.nbCos;
-	test(`SMath#cos = Math.cos±${cosEpsilon.toPrecision(3)} (nbCos ${params ? sMath.params.nbCos : "default"})`, function (t) {
+	var cosEpsilon = PI_2 / fMath.params.nbCos;
+	test(`FMath#cos = Math.cos±${cosEpsilon.toPrecision(3)} (nbCos ${params ? fMath.params.nbCos : "default"})`, function (t) {
 		angles.forEach(function (angle) {
-			t.ok(closeEnough(Math.cos(angle), sMath.cos(angle), cosEpsilon));
+			t.ok(closeEnough(Math.cos(angle), fMath.cos(angle), cosEpsilon));
 		});
 		t.end();
 	});
 
-	var atanEpsilon = (sMath.params.maxAtan - sMath.params.minAtan) / sMath.params.nbAtan;
-	test(`SMath#atan = Math.atan±${atanEpsilon.toPrecision(3)} (nbAtan ${params ? sMath.params.nbAtan : "default"})`, function (t) {
+	var atanEpsilon = (fMath.params.maxAtan - fMath.params.minAtan) / fMath.params.nbAtan;
+	test(`FMath#atan = Math.atan±${atanEpsilon.toPrecision(3)} (nbAtan ${params ? fMath.params.nbAtan : "default"})`, function (t) {
 		tans.forEach(function (tan) {
-			t.ok(closeEnough(Math.atan(tan), sMath.atan(tan), atanEpsilon));
+			t.ok(closeEnough(Math.atan(tan), fMath.atan(tan), atanEpsilon));
 		});
 		t.end();
 	});	

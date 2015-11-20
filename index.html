@@ -19,7 +19,7 @@
 	<span style="color:blue;">Blue:</span> cached points<br/>
 	<span style="color:red;">Red:</span> native points<br/>
 	Resolution: <input type="range" min="10" max="3600" id="resolution" value="180"> <span id="resVal">180</span>
-	<script type="text/javascript" src="src/SMath.js"></script>
+	<script type="text/javascript" src="src/FMath.js"></script>
 
 	<canvas id="tests" width="800" height="800"></canvas>
 	<script>
@@ -28,13 +28,13 @@
 	function launch () {
 		ctx.fillStyle = "white";
 		ctx.fillRect(0, 0, 800, 800);
-		var sMath = new SMath({
+		var fMath = new FMath({
 			nbCos: resolution,
 			nbSin: resolution
 		});
 		for (var i = 0; i < 100; i++) {
 			var angle = Math.random() * 10;
-			console.log (sMath.cos(angle) - Math.cos(angle));
+			console.log (fMath.cos(angle) - Math.cos(angle));
 		}
 
 
@@ -50,8 +50,8 @@
 			// Draw optimized point
 			ctx.fillStyle = "blue";
 			ctx.globalAlpha = 1;
-			var x = sMath.cos(angle) * 390;
-			var y = sMath.sin(angle) * 390;
+			var x = fMath.cos(angle) * 390;
+			var y = fMath.sin(angle) * 390;
 			ctx.fillRect(400 + x, 400 + y, 2, 2);
 		}
 	}

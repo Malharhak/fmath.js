@@ -1,14 +1,14 @@
 {
-  "name": "smath",
+  "name": "fmath",
   "version": "1.0.0",
-  "description": "Optimized math functions",
-  "main": "src/SMath.js",
+  "description": "Fast math functions",
+  "main": "src/FMath.js",
   "scripts": {
     "test": "ava"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Malharhak/smath.js.git"
+    "url": "git+https://github.com/Malharhak/fmath.js.git"
   },
   "author": "Anthony Pigeot <anthony.pigeot@gmail.com>",
   "contributors": [
@@ -17,9 +17,9 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Malharhak/smath.js/issues"
+    "url": "https://github.com/Malharhak/fmath.js/issues"
   },
-  "homepage": "https://github.com/Malharhak/smath.js#readme",
+  "homepage": "https://github.com/Malharhak/fmath.js#readme",
   "devDependencies": {
     "ava": "0.5.0"
   }
