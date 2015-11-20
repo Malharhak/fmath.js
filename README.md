@@ -1,4 +1,4 @@
-#Speed Maths library#
+# Speed Maths library [![CircleCI](https://img.shields.io/circleci/project/Malharhak/smath.js.svg)](https://github.com/Malharhak/smath.js)
 
 This is a library for faster math functions execution in Javascript. It only implements sine and cosine for now.
 
@@ -10,24 +10,24 @@ The resolution of the lookup table can be configured too.
 
 ![jsperf_results.png](http://malharhak.github.io/smath.js/assets/jsperf.png)
 
-##Usage##
+## Usage
 
 ``` javascript
 var sMath = new SMath();
 sMath.cos(Math.PI); // Returns the cos of Math.PI
 ```
 
-##Functions:##
+## Functions:
 
-* cos: `sMath.cos(angle);` 		(± `Math.cos`)
-* sin: `sMath.sin(angle);`  	(± `Math.sin`)
-* atan: `sMath.atan(tan);`		(± `Math.atan`)
+* cos: `sMath.cos(angle);` 		(≈ `Math.cos`)
+* sin: `sMath.sin(angle);`  	(≈ `Math.sin`)
+* atan: `sMath.atan(tan);`		(≈ `Math.atan`)
 
 If you want to add others, don't hesitate to fork and make a pull request
 
-##Parameters:##
+## Parameters:
 
-####Resolution####
+#### Resolution
 ``` javascript
 var sMath = new SMath({
 	resolution: 720
@@ -48,7 +48,7 @@ var sMath = new SMath({
 });
 ```
 
-####Atan####
+#### Atan
 
 Atan is a particular case. The `tan` function can have infinite values. Since we cannot cache the infinity, there is a minimum and maximum tan caching value that is used for SMath. The default is -40;40. Which are around 1.54. The limit of `atan` being π/2 (1.57), this is pretty near the limit of the functio, and still avoids having to cache a very learge amount of numbers.
 
@@ -69,10 +69,10 @@ Here is how the `tan` function looks. As you can see, its limit tend to -∞ and
 And here is how the `atan` function looks:
 ![Atan function graph](http://i.imgur.com/rTeqkWj.png)
 
-##Difference in results##
+## Difference in results
 To get an idea of the difference in results between the native functions and the cached ones, you can run the index page which takes 100 random angles and shows the difference in result in the console. It also outputs a canvas circle with blue dots so you can visualize the granularity of the approximation
 
-##Design choices##
+## Design choices
 Just to clarify why and how this is programmed:
 
 In theory, we could only store a cosine array, or even a quarter of cosine array and find the rest at runtime. But the point of this library is to optimize as much as possible the execution time of the sine/cosine functions. Additional logic in the functions would mean slower execution time, which is not the intent here.
