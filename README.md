@@ -7,6 +7,8 @@ It optimizes `Math.sin`, `Math.cos`, and `Math.atan` with configurable resolutio
 
 ![JSPerf screenshot](https://raw.githubusercontent.com/malharhak/fmath.js/master/assets/jsperf.png)
 
+Also available as a [npm package](https://www.npmjs.com/package/fmath)
+
 ## Usage
 
 ```javascript
