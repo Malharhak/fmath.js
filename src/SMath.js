@@ -11,7 +11,11 @@
 }(this, function () {
 	var PI2 = Math.PI * 2;
 
-	SMath.DEFAULT_PARAMS = {resolution: 360};
+	SMath.DEFAULT_PARAMS = {
+		resolution: 360,
+		minAtan: -40,
+		maxAtan: 40
+	};
 
 	/**
 	 * SMath constructor
@@ -50,7 +54,6 @@
 		if (angle < 0) angle += PI2;
 		return this.sinTable[(angle * this.sinFactor) | 0];
 	};
-
 	SMath.prototype.atan = function (tan) {
 		var index = ((tan - this.params.minAtan) * this.atanFactor) | 0;
 		if (index < 0) {
@@ -67,12 +70,9 @@
 			var key = functionNames[i];
 			params[key] = params[key] || params.resolution;
 		}
-		params.minAtan = params.minAtan || -40;
-		params.maxAtan = params.maxAtan || 40;
 	};
 
 	SMath._fillAtanCache = function (array, factor, min) {
-		
 		for (var i = 0; i < array.length; i++) {
 			var tan = min + i / factor;
 			array[i] = Math.atan(tan);
