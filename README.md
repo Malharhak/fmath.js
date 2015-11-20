@@ -42,7 +42,7 @@ params = {
 
 atan is a particular case, as its range is `(-∞, ∞)`. Since we cannot cache an infinite number of values, you can pass `minAtan` (default `-40`) and `maxAtan` (default `40`) to the constructor. ±40 was chosen since atan(1.54) ≈ 40 and the range of `atan` is `(-π/2, π/2)` ≈ `(-1.57, 1.57)`. This is near the limit of the function, and still avoids having to cache too many numbers.
 
-If you input a value lower/higher than `minAtan`/`maxAtan`, the function will return `-Math.PI` or `Math.PI`.
+If you input a value lower/higher than `minAtan`/`maxAtan`, the function will return `-Math.PI / 2` or `Math.PI / 2`.
 
 If you use `atan`, be careful that due to the nature of this function, values near 0 jump very fast from negative to positive. If you don't have a big enough resolution, your results near 0 will be very imprecise. Try to keep the minAtan - maxAtan interval as low as possible, and the resolution high for atan.
 
