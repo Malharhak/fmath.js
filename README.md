@@ -1,22 +1,22 @@
-# Speed Maths library [![CircleCI](https://img.shields.io/circleci/project/Malharhak/smath.js.svg)](https://github.com/Malharhak/smath.js)
+# Fast Maths library [![CircleCI](https://img.shields.io/circleci/project/Malharhak/fmath.js.svg)](https://github.com/Malharhak/fmath.js)
 
 This is a library for faster trigonometric functions in JavaScript by way of [LUT](https://en.wikipedia.org/wiki/Lookup_table)s.
-It optimizes `Math.sin`, `Math.cos`, and `Math.atan` with configurable resolution. Demo [here](http://malharhak.github.io/smath.js/).
+It optimizes `Math.sin`, `Math.cos`, and `Math.atan` with configurable resolution. Demo [here](http://malharhak.github.io/fmath.js/).
 
 [JSPerf](http://jsperf.com/smath-test/11) shows a speed increase of 400% in Chrome. Not bad!
 
-![JSPerf screenshot](https://raw.githubusercontent.com/malharhak/smath.js/master/assets/jsperf.png)
+![JSPerf screenshot](https://raw.githubusercontent.com/malharhak/fmath.js/master/assets/jsperf.png)
 
 ## Usage
 
 ```javascript
-var sMath = new SMath();
-sMath.cos(Math.PI);
-sMath.sin(Math.PI);
-sMath.atan(Math.PI/6);
+var fMath = new FMath();
+fMath.cos(Math.PI);
+fMath.sin(Math.PI);
+fMath.atan(Math.PI/6);
 ```
 
-### new SMath(params)
+### new FMath(params)
 Creates a new object that you can use in place of the built-in `Math` for methods like `sin` and `cos`. Default `params`:
 ```javascript
 params = {
@@ -31,13 +31,13 @@ params = {
 };
 ```
 
-### SMath#cos
+### FMath#cos
 ≈ `Math.cos`
 
-### SMath#sin
+### FMath#sin
 ≈ `Math.sin`
 
-### SMath#atan
+### FMath#atan
 ≈ `Math.atan`
 
 atan is a particular case, as its range is `(-∞, ∞)`. Since we cannot cache an infinite number of values, you can pass `minAtan` (default `-40`) and `maxAtan` (default `40`) to the constructor. ±40 was chosen since atan(1.54) ≈ 40 and the range of `atan` is `(-π/2, π/2)` ≈ `(-1.57, 1.57)`. This is near the limit of the function, and still avoids having to cache too many numbers.
@@ -51,7 +51,7 @@ Here is how the `tan` function looks. As you can see, its limit tend to -∞ and
 And here is how the `atan` function looks:
 ![Atan function graph](http://i.imgur.com/rTeqkWj.png)
 
-# SMath#tan/csc/sec/etc
+# FMath#tan/csc/sec/etc
 
 If you want to add others, don't hesitate to file a pull request!
 
