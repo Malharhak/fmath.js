@@ -1,9 +1,9 @@
 # Fast Maths library [![CircleCI](https://img.shields.io/circleci/project/Malharhak/fmath.js.svg)](https://circleci.com/gh/Malharhak/fmath.js)
 
 This is a library for faster trigonometric functions in JavaScript by way of [LUT](https://en.wikipedia.org/wiki/Lookup_table)s.
-It optimizes `Math.sin`, `Math.cos`, and `Math.atan` with configurable resolution. Demo [here](http://malharhak.github.io/fmath.js/).
+It optimizes `Math.sin`, `Math.cos`, and `Math.atan` with configurable resolution.
 
-[JSPerf](http://jsperf.com/fmath) shows a speed increase of 400% in Chrome. Not bad!
+[JSPerf](http://jsperf.com/fmath) shows a speed increase of 400% in Chrome.
 
 ![JSPerf screenshot](https://raw.githubusercontent.com/malharhak/fmath.js/master/assets/jsperf.png)
 
